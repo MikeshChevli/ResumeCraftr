@@ -11,7 +11,7 @@ import {
 
 const HomeScreen = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="w-full">
       <Header />
       <main className="w-full">
         <Suspense fallback={<MainSpinner />}>
@@ -21,7 +21,7 @@ const HomeScreen = () => {
             <Route path="/profile/:uid" element={<UserProfile />} />
             <Route path="/resume/*" element={<CreateResume />} />
             <Route
-              path="/resumeDatile/:templateId"
+              path="/resumeDetail/:templateId"
               element={<TemplateDesignPinDetails />}
             />
           </Routes>

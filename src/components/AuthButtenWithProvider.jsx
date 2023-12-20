@@ -10,7 +10,8 @@ import { auth } from "../config/firebase.config";
 const AuthButtenWithProvider = ({ Icon, lable, provider }) => {
   const googleAuthProvider = new GoogleAuthProvider();
   const githubAuthProvider = new GithubAuthProvider();
-  const HandleClick = async () => {
+
+  const handleClick = async () => {
     switch (provider) {
       case "GoogleAuthProvider":
         await signInWithRedirect(auth, googleAuthProvider)
@@ -23,7 +24,6 @@ const AuthButtenWithProvider = ({ Icon, lable, provider }) => {
         break;
 
       case "GithubAuthProvider":
-        // await firebase.auth().signInWithPopup(githubAuthProvider);
         await signInWithRedirect(auth, githubAuthProvider)
           .then((result) => {
             console.log(result);
@@ -39,7 +39,7 @@ const AuthButtenWithProvider = ({ Icon, lable, provider }) => {
   };
   return (
     <div
-      onClick={HandleClick}
+      onClick={handleClick}
       className="w-full flex items-center justify-between px-4 py-3 rounded-md border-2 border-blue-700 cursor-pointer group hover:bg-blue-700 active:scale-95 duration-150 hover:shadow-md"
     >
       <Icon className="text-txtPrimary text-xl group-hover:text-white" />

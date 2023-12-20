@@ -175,34 +175,34 @@ const CreateTempate = () => {
   }, [user, isLoading]);
 
   return (
-    <div className="w-full px-4 lg:px-10 2xl:px-32 py-4 grid grid-cols-1 lg:grid-cols-12 ">
+    <div className="w-full px-4 lg:px-10 2xl:px-12 py-1 grid grid-cols-1 lg:grid-cols-12">
       <div className="col-span-12 lg:col-span-4 2xl:col-span-3 w-full flex flex-1 flex-col items-center justify-start px-2 gap-4">
         <div className="w-full">
           <p className="text-lg text-txtPrimary">Create a New template</p>
         </div>
 
-        <div className="w-full flex items-center justify-end">
+        <div className="w-full h-1 flex items-center justify-end">
           <p className="text-base text-txtLight uppercase font-semibold">
             TempId :{" "}
           </p>
           <p className="text-base text-txtDark capitalize font-bold">
             {templates && templates.length > 0
-              ? `Template${templates.length + 1}`
+              ? `Template ${templates.length + 1}`
               : "Template 1"}
           </p>
         </div>
         <input
-          className="w-full px-4 py-3 rounded-md bg-transparent border border-gray-300 text-lg text-txtPrimary focus:text-txtDark focus:shadow-md outline-none"
+          className="w-full px-4 py-1 rounded-md bg-transparent border border-gray-300 text-lg text-txtPrimary focus:text-txtDark focus:shadow-md outline-none"
           type="text"
           name="title"
           placeholder="Template title"
           value={formData.title}
           onChange={handleInputChange}
         />
-        <div className="w-full bg-gray-100 backdrop-blur-md h-[420px] rounded-md border-2 border-dotted border-gray-300 cursor-pointer flex items-center justify-center">
+        <div className="w-full bg-gray-100 backdrop-blur-md h-[420px]rounded-md border border-gray-300 cursor-pointer flex items-center justify-center">
           {imageAsset.isImageloading ? (
             <Fragment>
-              <div className="flex flex-col items-center justify-center gap-4">
+              <div className="flex flex-col items-center justify-center h-[420px] gap-4">
                 <PuffLoader color="#498fcd" size={40} />
                 <p className="text-xl tracking-wider capitalize text-txtPrimary">
                   {imageAsset?.progess.toFixed(2)} %
@@ -213,7 +213,7 @@ const CreateTempate = () => {
             <Fragment>
               {!imageAsset?.uri ? (
                 <Fragment>
-                  <label className=" flex justify-center items-center flex-col w-full cursor-pointer h-full">
+                  <label className=" flex justify-center items-center flex-col w-full cursor-pointer h-[480px]">
                     <FaUpload className="text-2xl" />
                     <p className="text-lg text-txtLight">Click to upload</p>
 
@@ -250,7 +250,7 @@ const CreateTempate = () => {
           {initialTags.map((tag, index) => (
             <div
               key={index}
-              className={`border border-gray-300 px-2 py-1 rounded-md cursor-pointer ${
+              className={`border border-gray-300 px-2 py-2 rounded-md cursor-pointer ${
                 selectedtags.includes(tag) ? "bg-blue-500 text-white" : ""
               }`}
               onClick={() => handleSelectedTags(tag)}
@@ -261,7 +261,7 @@ const CreateTempate = () => {
         </div>
         <button
           type="button"
-          className="w-full bg-blue-500 text-white px-4 py-3 rounded-md"
+          className="w-full bg-blue-500 text-white px-4 py-2 rounded-md"
           onClick={pushToCloud}
         >
           Save
@@ -282,7 +282,7 @@ const CreateTempate = () => {
                   {templates?.map((template) => (
                     <div
                       key={template._id}
-                      className="w-full h-[500px] rounded-md overflow-hidden relative"
+                      className="w-full h-[340px] rounded-md overflow-hidden relative"
                     >
                       <img
                         src={template?.imageUrl}
