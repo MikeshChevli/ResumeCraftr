@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Header, MainSpinner } from "../components";
 import { Route, Routes } from "react-router-dom";
-import { HomeContainer } from "../containers";
+import { Footer, HomeContainer } from "../containers";
 import {
   CreateResume,
   CreateTempate,
@@ -27,6 +27,7 @@ const HomeScreen = () => {
           </Routes>
         </Suspense>
       </main>
+      <Footer />
     </div>
   );
 };

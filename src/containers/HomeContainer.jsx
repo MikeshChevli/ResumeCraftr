@@ -17,7 +17,7 @@ const HomeContainer = () => {
   }
 
   return (
-    <div className="w-full px-4 lg:px-12 py-6 flex flex-col items-center justify-start">
+    <div className="w-full h-full px-4 lg:px-12 py-6 flex flex-col items-center justify-start">
       <Filter />
       {tempError ? (
         <Fragment>
