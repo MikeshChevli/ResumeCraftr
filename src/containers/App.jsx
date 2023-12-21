@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { HomeScreen, Authentaction } from "../pages";
+import { HomeScreen, Authentication } from "../pages";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +13,7 @@ const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="*" element={<HomeScreen />}></Route>
-          <Route path="/auth" element={<Authentaction />}></Route>
+          <Route path="/auth" element={<Authentication />}></Route>
         </Routes>
       </Suspense>
       <ToastContainer position="top-center" />

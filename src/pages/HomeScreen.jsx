@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
 import { Header, MainSpinner } from "../components";
 import { Route, Routes } from "react-router-dom";
-import { Footer, HomeContainer } from "../containers";
+import { Dashboard, HomeContainer } from "../containers";
 import {
   CreateResume,
-  CreateTempate,
+  CreateTemplate,
   TemplateDesignPinDetails,
   UserProfile,
 } from "../pages";
@@ -17,7 +17,8 @@ const HomeScreen = () => {
         <Suspense fallback={<MainSpinner />}>
           <Routes>
             <Route path="/" element={<HomeContainer />} />
-            <Route path="/template/create" element={<CreateTempate />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/template/create" element={<CreateTemplate />} />
             <Route path="/profile/:uid" element={<UserProfile />} />
             <Route path="/resume/*" element={<CreateResume />} />
             <Route
@@ -27,7 +28,6 @@ const HomeScreen = () => {
           </Routes>
         </Suspense>
       </main>
-      <Footer />
     </div>
   );
 };

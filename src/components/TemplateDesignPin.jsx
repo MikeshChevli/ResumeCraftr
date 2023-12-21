@@ -8,12 +8,12 @@ import {
   BiSolidHeart,
 } from "react-icons/bi";
 import useUser from "../hooks/useUser";
-import { saveToCollection, saveToFavourits } from "../api";
+import { saveToCollection, saveToFavorites } from "../api";
 import useTemplates from "../hooks/useTemplates";
 import { useNavigate } from "react-router-dom";
 const TemplateDesignPin = ({ data, index }) => {
   const navigate = useNavigate();
-  const [isHoverred, setIsHoverred] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const { data: user, refetch: userRefetch } = useUser();
   const { refetch: templateRefetch } = useTemplates();
@@ -28,9 +28,9 @@ const TemplateDesignPin = ({ data, index }) => {
     userRefetch();
   };
 
-  const addToFavourits = async (event) => {
+  const addToFavorites = async (event) => {
     event.stopPropagation();
-    await saveToFavourits(user, data);
+    await saveToFavorites(user, data);
     templateRefetch();
   };
 
@@ -38,8 +38,8 @@ const TemplateDesignPin = ({ data, index }) => {
     <motion.div {...scaleInOut(index)} key={data?._id}>
       <div
         className="w-full rounded-md bg-gray-200 overflow-hidden relative h-[500px] 2xl:h[740px]"
-        onMouseEnter={() => setIsHoverred(true)}
-        onMouseLeave={() => setIsHoverred(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <img
           className="w-full h-full object-cover"
@@ -47,7 +47,7 @@ const TemplateDesignPin = ({ data, index }) => {
           alt=""
         />
         <AnimatePresence>
-          {isHoverred && (
+          {isHovered && (
             <motion.div
               {...FadeInOutWIthOpacity}
               onClick={handleRouteNavigation}
@@ -55,7 +55,7 @@ const TemplateDesignPin = ({ data, index }) => {
             >
               <div className="flex flex-col items-end justify-start w-full gap-8">
                 <InnerBoxCard
-                  lable={
+                  label={
                     user?.collection?.includes(data?._id)
                       ? "Added to Collection"
                       : "Add to Collection"
@@ -65,20 +65,20 @@ const TemplateDesignPin = ({ data, index }) => {
                       ? BiSolidFolderPlus
                       : BiFolderPlus
                   }
-                  onhandle={addToCollection}
+                  onHandle={addToCollection}
                 />
                 <InnerBoxCard
-                  lable={
-                    data?.favourits?.includes(user?.uid)
-                      ? "Added to Favourits"
-                      : "Add to Favourits"
+                  label={
+                    data?.favorites?.includes(user?.uid)
+                      ? "Added to favorites"
+                      : "Add to Favorites"
                   }
                   Icon={
-                    data?.favourits?.includes(user?.uid)
+                    data?.favorites?.includes(user?.uid)
                       ? BiSolidHeart
                       : BiHeart
                   }
-                  onhandle={addToFavourits}
+                  onHandle={addToFavorites}
                 />
               </div>
             </motion.div>
@@ -91,23 +91,23 @@ const TemplateDesignPin = ({ data, index }) => {
 
 export default TemplateDesignPin;
 
-const InnerBoxCard = ({ lable, Icon, onhandle }) => {
-  const [isHoverred, setIsHoverred] = useState(false);
+const InnerBoxCard = ({ label, Icon, onHandle }) => {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      onClick={onhandle}
+      onClick={onHandle}
       className="w-10 h-10 rounded-md bg-gray-200 flex items-center justify-center hover:shadow-md relative"
-      onMouseEnter={() => setIsHoverred(true)}
-      onMouseLeave={() => setIsHoverred(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <Icon className="text-txtPrimary text-base" />
       <AnimatePresence>
-        {isHoverred && (
+        {isHovered && (
           <motion.div
             {...scaleSideInout}
             className="px-3 py-2 rounded-md bg-gray-200 absolute -left-36 after:w-2 after:h-2 after:bg-gray-200 after:absolute after:-right-1 after:top-[14px] after:rotate-45"
           >
-            <p className="text-sm text-txtPrimary whitespace-nowrap">{lable}</p>
+            <p className="text-sm text-txtPrimary whitespace-nowrap">{label}</p>
           </motion.div>
         )}
       </AnimatePresence>

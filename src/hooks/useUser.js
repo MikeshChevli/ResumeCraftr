@@ -7,8 +7,8 @@ const useUser = () => {
     "user",
     async () => {
       try {
-        const userDatail = await getUserDetail();
-        return userDatail;
+        const userDetail = await getUserDetail();
+        return userDetail;
       } catch (error) {
         if (!error.message.includes("not authenticated")) {
           toast.error("Something went wrong. Please try again later.");

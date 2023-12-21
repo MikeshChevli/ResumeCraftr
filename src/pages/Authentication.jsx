@@ -2,12 +2,12 @@
 import React, { useEffect } from "react";
 import { Logo } from "../assets/";
 import { Footer } from "../containers";
-import { AuthButtenWithProvider, MainSpinner } from "../components/";
+import { AuthButtonWithProvider, MainSpinner } from "../components/";
 import { FaGoogle, FaGithub } from "react-icons/fa6";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
-const Authentaction = () => {
+const Authentication = () => {
   // eslint-disable-next-line
   const { data, isLoading, isError } = useUser();
   const navigate = useNavigate();
@@ -28,16 +28,16 @@ const Authentaction = () => {
         <h1 className="text-3xl lg:text-4xl text-blue-700">
           Welcome to ResumeCraftr
         </h1>
-        <h2 className="text-2xl text-gray-600">Authentact</h2>
+        <h2 className="text-2xl text-gray-600">Authenticate</h2>
         <div className="w-full lg:w-96 flex flex-col rounded-md justify-start items-center gap-6 p-2">
-          <AuthButtenWithProvider
+          <AuthButtonWithProvider
             Icon={FaGoogle}
-            lable={"Signin with Google"}
+            label={"Sign in with Google"}
             provider={"GoogleAuthProvider"}
           />
-          <AuthButtenWithProvider
+          <AuthButtonWithProvider
             Icon={FaGithub}
-            lable={"Signin with GitHub"}
+            label={"Sign in with GitHub"}
             provider={"GithubAuthProvider"}
           />
         </div>
@@ -47,4 +47,4 @@ const Authentaction = () => {
   );
 };
 
-export default Authentaction;
+export default Authentication;

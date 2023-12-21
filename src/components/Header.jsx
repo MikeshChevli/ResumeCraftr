@@ -29,15 +29,15 @@ const Header = () => {
   const handleSearchTerm = (event) => {
     const searchTerm = event.target.value;
 
-    queryClient.setQueryData("globleFilters", {
-      ...queryClient.getQueryData("globleFilters"),
+    queryClient.setQueryData("globuleFilters", {
+      ...queryClient.getQueryData("globuleFilters"),
       searchTerm: searchTerm,
     });
   };
 
   const clearFilter = () => {
-    queryClient.setQueryData("globleFilters", {
-      ...queryClient.getQueryData("globleFilters"),
+    queryClient.setQueryData("globuleFilters", {
+      ...queryClient.getQueryData("globuleFilters"),
       searchTerm: "",
     });
   };

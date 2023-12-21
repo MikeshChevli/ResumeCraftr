@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 
 const useFilters = () => {
   const { data, isLoading, isError, refetch } = useQuery(
-    "globleFilters",
+    "globuleFilters",
     async () => ({ searchTerm: "" }),
     { refetchOnWindowFocus: false }
   );

@@ -1,86 +1,73 @@
-/* eslint-disable no-unused-vars */
-import React, { Fragment } from "react";
-import { Filter, MainSpinner, TemplateDesignPin } from "../components";
-import useTemplates from "../hooks/useTemplates.js";
-import { AnimatePresence } from "framer-motion";
+import React from "react";
+import { awardLeft, awardRight } from "../assets";
+import { Link } from "react-router-dom";
+import { MdArrowOutward } from "react-icons/md";
 
 const HomeContainer = () => {
-  const {
-    data: templates,
-    isError: tempError,
-    isLoading: tempIsLoading,
-    refetch: temp_refetch,
-  } = useTemplates();
-
-  if (tempIsLoading) {
-    return <MainSpinner />;
-  }
-
   return (
-    <div className="w-full h-full px-4 lg:px-12 py-6 flex flex-col items-center justify-start">
-      <Filter />
-      {tempError ? (
-        <Fragment>
-          <p className="text-2xl text-txtPrimary font-semibold">
-            Something went wrong! Please try again later
-          </p>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2">
-            {templates && templates.length > 0 ? (
-              <Fragment>
-                <AnimatePresence>
-                  {templates?.map((template, index) => (
-                    <TemplateDesignPin
-                      key={template._id}
-                      data={template}
-                      index={index}
-                    />
-                  ))}
-                </AnimatePresence>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <p className="text-2xl text-txtPrimary font-semibold">
-                  No templates found! Please try again later.
-                  <br />
-                  If the problem persists, please contact us at
-                  <br />
-                  <a href="mailto:XXXXXXXXXXXXXXXXXXXXXXX">
-                    XXXXXXXXXXXXXXXXXXXXXXX
-                  </a>
-                  <br />
-                  or
-                  <br />
-                  <a href="tel:0000000000000">+91 9876543210</a>
-                  <br />
-                  for any help.
-                  <br />
-                  <br />
-                  Thank you for using Resume Craftr!
-                  <br />
-                  <br />
-                  Happy Resume Crafting
-                  <br />
-                  <br />
-                  <p className="text-sm text-txtPrimary font-semibold">
-                    Made with ❤️ by
-                    <br />
-                    <a
-                      href="XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-                      className="text-txtPrimary font-semibold"
-                    >
-                      Mikesh-dev
-                    </a>
-                    <br />
-                  </p>
-                </p>
-              </Fragment>
-            )}
+    <div className="flex justify-start items-center w-full h-screen flex-col px-12 py-12">
+      <div className="grid w-full grid-cols-1 lg:grid-cols-2">
+        <div className="w-full h-full gap-8 flex col-span-1 lg:col-span-1 flex-col justify-start items-start">
+          <div className="flex flex-row gap-3">
+            <div className="flex flex-row gap-0 mx-2 my-3 justify-start items-end">
+              <img
+                className="h-10 w-10 text-txtPrimary"
+                src={awardLeft}
+                alt=""
+              />
+              <p className="text-base font-bold text-txtPrimary">
+                Awesome Resumes
+              </p>
+              <img
+                className="h-10 w-10 text-txtPrimary"
+                src={awardRight}
+                alt=""
+              />
+            </div>
+            <div className="flex flex-row gap-0 mx-2 my-3 justify-start items-end">
+              <img
+                className="h-10 w-10 text-txtPrimary"
+                src={awardLeft}
+                alt=""
+              />
+              <p className="text-base font-bold text-txtPrimary">
+                Live Updates
+              </p>
+              <img
+                className="h-10 w-10 text-txtPrimary"
+                src={awardRight}
+                alt=""
+              />
+            </div>
           </div>
-        </Fragment>
-      )}
+          <p className="text-txtPrimary lg:text-9xl text-5xl font-extrabold px-3 py-4">
+            Unleash your Full Potential
+          </p>
+          <p className="text-txtPrimary text-3xl lg:text-4xl font-extrabold  px-3 py-4">
+            Create your resume with our unique templates and live interaction
+          </p>
+          <Link
+            className="lg:w-1/2 w-full px-4 gap-3 py-3 h-20 rounded-md flex group items-center justify-center bg-gray-400 hover:bg-gray-500 group"
+            to={"/dashboard"}
+          >
+            <p className="gap-2 text-white text-xl font-semibold flex flex-row group-hover:scale-105 ">
+              Get Started - It's free
+              <MdArrowOutward className="text-3xl" />
+            </p>
+          </Link>
+        </div>
+        <div
+          className="w-full h-full gap-8 flex col-span-1 lg:col-span-1 flex-col justify-start items-start"
+          style={{
+            background:
+              "url(https://plus.unsplash.com/premium_photo-1676210736121-3994f53bb493?q=80&w=1898&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+            backgroundSize: "cover",
+            backgroundPositionX: "center",
+            backgroundRepeat: "no-repeat",
+            objectFit: "fill",
+          }}
+        ></div>
+      </div>
     </div>
   );
 };

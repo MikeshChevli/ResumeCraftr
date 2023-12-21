@@ -16,7 +16,7 @@ import useTemplates from "../hooks/useTemplates";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
-const CreateTempate = () => {
+const CreateTemplate = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -25,12 +25,12 @@ const CreateTempate = () => {
   });
 
   const [imageAsset, setImageAsset] = useState({
-    isImageloading: false,
+    isImageLoading: false,
     uri: null,
     progess: 0,
   });
 
-  const [selectedtags, setSelectedtags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   const {
     data: templates,
@@ -47,7 +47,7 @@ const CreateTempate = () => {
   };
 
   const handleFileSelect = async (event) => {
-    setImageAsset((prevAsset) => ({ ...prevAsset, isImageloading: true }));
+    setImageAsset((prevAsset) => ({ ...prevAsset, isImageLoading: true }));
     const file = event.target.files[0];
 
     if (file && isAllowed(file)) {
@@ -81,7 +81,7 @@ const CreateTempate = () => {
             setInterval(() => {
               setImageAsset((prevAsset) => ({
                 ...prevAsset,
-                isImageloading: false,
+                isImageLoading: false,
               }));
             }, 2000);
           });
@@ -124,11 +124,11 @@ const CreateTempate = () => {
     });
   };
 
-  const handleSelectedTags = (tag) => {
-    if (selectedtags.includes(tag)) {
-      setSelectedtags(selectedtags.filter((t) => t !== tag));
+  const handleselectedTags = (tag) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter((t) => t !== tag));
     } else {
-      setSelectedtags([...selectedtags, tag]);
+      setSelectedTags([...selectedTags, tag]);
     }
   };
 
@@ -139,7 +139,7 @@ const CreateTempate = () => {
       _id: id,
       title: formData.title,
       imageUrl: imageAsset.uri,
-      tags: selectedtags,
+      tags: selectedTags,
       name:
         templates && templates.length > 0
           ? `Template ${templates.length + 1}`
@@ -157,7 +157,7 @@ const CreateTempate = () => {
           ...prevAsset,
           uri: null,
         }));
-        setSelectedtags([]);
+        setSelectedTags([]);
         templatesRefatch();
         toast.success("Template created successfully.");
       })
@@ -200,7 +200,7 @@ const CreateTempate = () => {
           onChange={handleInputChange}
         />
         <div className="w-full bg-gray-100 backdrop-blur-md h-[420px]rounded-md border border-gray-300 cursor-pointer flex items-center justify-center">
-          {imageAsset.isImageloading ? (
+          {imageAsset.isImageLoading ? (
             <Fragment>
               <div className="flex flex-col items-center justify-center h-[420px] gap-4">
                 <PuffLoader color="#498fcd" size={40} />
@@ -251,9 +251,9 @@ const CreateTempate = () => {
             <div
               key={index}
               className={`border border-gray-300 px-2 py-2 rounded-md cursor-pointer ${
-                selectedtags.includes(tag) ? "bg-blue-500 text-white" : ""
+                selectedTags.includes(tag) ? "bg-blue-500 text-white" : ""
               }`}
-              onClick={() => handleSelectedTags(tag)}
+              onClick={() => handleselectedTags(tag)}
             >
               <p className="text-xs">{tag}</p>
             </div>
@@ -319,4 +319,4 @@ const CreateTempate = () => {
   );
 };
 
-export default CreateTempate;
+export default CreateTemplate;

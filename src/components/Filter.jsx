@@ -15,15 +15,15 @@ const Filter = () => {
   const queryClient = useQueryClient();
 
   const handleFilterValue = (value) => {
-    queryClient.setQueryData("globleFilters", {
-      ...queryClient.getQueryData("globleFilters"),
+    queryClient.setQueryData("globuleFilters", {
+      ...queryClient.getQueryData("globuleFilters"),
       searchTerm: value,
     });
   };
 
   const clearFilter = () => {
-    queryClient.setQueryData("globleFilters", {
-      ...queryClient.getQueryData("globleFilters"),
+    queryClient.setQueryData("globuleFilters", {
+      ...queryClient.getQueryData("globuleFilters"),
       searchTerm: "",
     });
   };

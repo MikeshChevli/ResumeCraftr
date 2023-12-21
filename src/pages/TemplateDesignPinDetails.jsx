@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
-import { getTemplateDetails, saveToCollection, saveToFavourits } from "../api";
+import { getTemplateDetails, saveToCollection, saveToFavorites } from "../api";
 import { MainSpinner, TemplateDesignPin } from "../components";
 import { FaHouse } from "react-icons/fa6";
 import {
@@ -21,7 +21,7 @@ const TemplateDesignPinDetails = () => {
 
   // eslint-disable-next-line no-unused-vars
   const { data, isError, isLoading, refetch } = useQuery(
-    ["timemplate", templateId],
+    ["template", templateId],
     () => getTemplateDetails(templateId)
   );
 
@@ -39,9 +39,9 @@ const TemplateDesignPinDetails = () => {
     userRefetch();
   };
 
-  const addToFavourits = async (event) => {
+  const addToFavorites = async (event) => {
     event.stopPropagation();
-    await saveToFavourits(user, data);
+    await saveToFavorites(user, data);
     templateRefetch();
     refetch();
   };
@@ -83,11 +83,11 @@ const TemplateDesignPinDetails = () => {
               <p className="text-lg text-txtPrimary font-semibold">
                 {data?.name}
               </p>
-              {data?.favourits?.length > 0 && (
+              {data?.favorites?.length > 0 && (
                 <div className="flex items-center justify-center gap-1">
                   <BiSolidHeart className="text-base text-red-500" />
                   <p className="text-base text-txtPrimary font-semibold">
-                    {data?.favourits?.length} likes
+                    {data?.favorites?.length} likes
                   </p>
                 </div>
               )}
@@ -120,27 +120,27 @@ const TemplateDesignPinDetails = () => {
                   </Fragment>
                 )}
 
-                {data?.favourits?.includes(user?.uid) ? (
+                {data?.Favorites?.includes(user?.uid) ? (
                   <Fragment>
                     <div
-                      onClick={addToFavourits}
+                      onClick={addToFavorites}
                       className="flex items-center justify-center px-4 py-2 rounded-md border border-gray-300 gap-2 hover:bg-gray-200 cursor-pointer"
                     >
                       <BiSolidHeart className="text-base text-txtPrimary" />
                       <p className="text-sm text-txtPrimary font-semibold whitespace-nowrap">
-                        Remove from favourits
+                        Remove from Favorites
                       </p>
                     </div>
                   </Fragment>
                 ) : (
                   <Fragment>
                     <div
-                      onClick={addToFavourits}
+                      onClick={addToFavorites}
                       className="flex items-center justify-center px-4 py-2 rounded-md border border-gray-300 gap-2 hover:bg-gray-200 cursor-pointer"
                     >
                       <BiHeart className="text-base text-txtPrimary" />
                       <p className="text-sm text-txtPrimary font-semibold whitespace-nowrap">
-                        Add to favourits
+                        Add to Favorites
                       </p>
                     </div>
                   </Fragment>

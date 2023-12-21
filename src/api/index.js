@@ -76,34 +76,34 @@ export const saveToCollection = async (user, data) => {
         toast.success(" Template removed from Collection");
       })
       .catch((error) => {
-        toast.error("Error removing template tofrom Collection");
+        toast.error("Error removing template from Collection");
         console.log(error);
       });
   }
 };
 
-export const saveToFavourits = async (user, data) => {
+export const saveToFavorites = async (user, data) => {
   const docRef = doc(db, "templates", data?._id);
-  if (!data?.favourits?.includes(user?.uid)) {
+  if (!data?.favorites?.includes(user?.uid)) {
     await updateDoc(docRef, {
-      favourits: arrayUnion(user?.uid),
+      favorites: arrayUnion(user?.uid),
     })
       .then(() => {
-        toast.success("Template added to Favourits");
+        toast.success("Template added to Favorites");
       })
       .catch((error) => {
-        toast.error("Error adding template to Favourits");
+        toast.error("Error adding template to Favorites");
         console.log(error);
       });
   } else {
     await updateDoc(docRef, {
-      favourits: arrayRemove(user?.uid),
+      favorites: arrayRemove(user?.uid),
     })
       .then(() => {
-        toast.success(" Template removed from Favourits");
+        toast.success(" Template removed from favorites");
       })
       .catch((error) => {
-        toast.error("Error removing template tofrom Favourits");
+        toast.error("Error removing template from Favorites");
         console.log(error);
       });
   }
